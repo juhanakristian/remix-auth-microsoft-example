@@ -11,10 +11,11 @@ export let authenticator = new Authenticator<User>(sessionStorage);
 
 let microsoftStrategy = new MicrosoftStrategy<User>(
   {
-    clientID: process.env.CLIENT_ID ?? "",
+    clientId: process.env.CLIENT_ID ?? "",
     clientSecret: process.env.CLIENT_SECRET ?? "",
-    callbackURL: process.env.CALLBACK_URL ?? "",
+    redirectUri: process.env.CALLBACK_URL ?? "",
     scope: "openid email profile",
+    prompt: "login"
   },
   async ({ accessToken, extraParams, profile }) => {
     return {
