@@ -1,8 +1,8 @@
-import { type LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getSession } from "~/session.server";
 
-export let loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const user = await getSession(request.headers.get("Cookie"));
   return user;
 };
