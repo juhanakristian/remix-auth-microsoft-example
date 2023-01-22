@@ -17,13 +17,14 @@ let microsoftStrategy = new MicrosoftStrategy<User>(
     clientId: process.env.CLIENT_ID ?? "",
     clientSecret: process.env.CLIENT_SECRET ?? "",
     redirectUri: process.env.CALLBACK_URL ?? "",
-    scope: "openid email profile",
+    scope: "openid email profile offline_access",
     prompt: "login",
   },
   async ({ accessToken, refreshToken, extraParams, profile }) => {
     const expiresAt = new Date(
       Date.now() + extraParams.expires_in * 1000
     ).toISOString();
+
     return {
       accessToken,
       refreshToken,
